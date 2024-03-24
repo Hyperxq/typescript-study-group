@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../../helper";
+import { Equal, Expect } from "../../../helper";
 import { expect, it, test} from "vitest";
 
 
@@ -35,7 +35,7 @@ import { expect, it, test} from "vitest";
 //   value: Person[Key],
 // ): Person[Key] {
 //   if (key === "birthdate") {
-//     return new Date();
+//     return new Date(); // Type 'Date' is not assignable to type 'Person[Key]'.
 //   }
 
 //   return value;
@@ -55,7 +55,7 @@ import { expect, it, test} from "vitest";
 //   };
 
 // it("Should return an object which matches the types of each input", () => {
-//   const result = curryFunction(1)(2)(3);
+  // const result = curryFunction(1)(2)(3);
 
 //   expect(result).toEqual({
 //     t: 1,
@@ -122,8 +122,8 @@ import { expect, it, test} from "vitest";
 //   type tests = [Expect<Equal<typeof a, string | undefined>>];
 // });
 
-// 5. even even more generics??
-// const getValue = <TObj>(obj: TObj, key: keyof TObj) => {
+// 5. even even more basic generics?? >> did u forget how to do it?
+// const getValue = (obj: unknown, key: unknown) => {
 //   return obj[key];
 // };
 
