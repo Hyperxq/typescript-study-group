@@ -1,5 +1,5 @@
 import { Equal, Expect } from "../../../helper";
-import { expect, it } from "vitest";
+import { expect, it, test } from "vitest";
 /* 
 6. a bit more complex (still manageable), at what level should the generic live? (hint: think low)
 */
