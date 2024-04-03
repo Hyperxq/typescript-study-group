@@ -23,7 +23,7 @@ import { expect, it, test} from "vitest";
 //   expect(result).toEqual("hello");
 // });
 
-// 2. runtime erros
+// 2. runtime errors
 // type Person = {
 //   name: string;
 //   age: number;
