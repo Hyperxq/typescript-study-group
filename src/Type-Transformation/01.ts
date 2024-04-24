@@ -15,12 +15,13 @@ import { Equal, Expect } from "../../helper";
 //   },
 // };
 
-// type TestingFramework = unknown;
+// type TestingFramework = keyof typeof testingFrameworks;
 
 // type tests = [Expect<Equal<TestingFramework, "vitest" | "jest" | "mocha">>];
 
 
 // 2. typeof and use of ....??
+
 // const makeQuery = (
 //   url: string,
 //   opts?: {
@@ -32,7 +33,7 @@ import { Equal, Expect } from "../../helper";
 //   },
 // ) => {};
 
-// type MakeQueryParameters = unknown;
+// type MakeQueryParameters = Parameters<typeof makeQuery>;
 
 // type tests = [
 //   Expect<
@@ -70,19 +71,21 @@ import { Equal, Expect } from "../../helper";
 
 // type B = "a" | "b" | "c";
 
-// type Event =
-//   | {
-//       type: "click";
-//       event: MouseEvent;
-//     }
-//   | {
-//       type: "focus";
-//       event: FocusEvent;
-//     }
-//   | {
-//       type: "keydown";
-//       event: KeyboardEvent;
-//     };
+type Event =
+  | {
+      type: "click";
+      event: MouseEvent;
+    }
+  | {
+      type: "focus";
+      event: FocusEvent;
+    }
+  | {
+      type: "keydown";
+      event: KeyboardEvent;
+    };
+
+type ClickEvent = Extract<Event, {type: 'click'}>
 
 // type tests = [Expect<Equal<ClickEvent, { type: "click"; event: MouseEvent }>>];
 
@@ -101,7 +104,7 @@ import { Equal, Expect } from "../../helper";
 // 	asd: {
 // 		qwe: 'hello'
 // 	}
-// };
+// } as const;
 
 
 // export type GroupProgram = typeof programModeMap["GROUP"];
@@ -125,7 +128,12 @@ import { Equal, Expect } from "../../helper";
 
 // 5. conditional types, want to return goodbye if u pass hello, and vice versa
 
-// type YouSayGoodbyeAndISayHello = unknown;
+// type YouSayGoodbyeAndISayHello<T> = T extends 'hello' ? 'goodbye' : 'hello';
+// type YouSayGoodbyeAndISayHello<T> = T extends 'hello' | 'goodbye' 
+// 	? T extends 'hello' 
+// 		? 'goodbye' 
+// 		: 'hello' 
+// 	: never;
 
 // type tests = [
 //   Expect<Equal<YouSayGoodbyeAndISayHello<"hello">, "goodbye">>,
@@ -141,7 +149,7 @@ import { Equal, Expect } from "../../helper";
 
 // 6. string literals 
 // 6.1 only allow absolute path as arguments.
-// type Route = unknown;
+// type Route = `/${string}`;
 // const goToRoute = (route: Route) => {};
 
 // goToRoute("/users");
@@ -151,13 +159,13 @@ import { Equal, Expect } from "../../helper";
 // // @ts-expect-error
 // goToRoute("users/1");
 // // @ts-expect-error
-// goToRoute("http://facebook.com");\
+// goToRoute("http://facebook.com");
 
 // 6.2 dynamic Routes
 
 // type Routes = "/users" | "/users/:id" | "/posts" | "/posts/:id";
 
-// type DynamicRoutes = unknown;
+// type DynamicRoutes = Extract<Routes, `/${string}:${string}`>;
 
 // type tests = [Expect<Equal<DynamicRoutes, "/users/:id" | "/posts/:id">>];
 
@@ -168,7 +176,9 @@ import { Equal, Expect } from "../../helper";
 // 7.1 create a mapped type from a union
 // type Route = "/" | "/about" | "/admin" | "/admin/users";
 
-// type RoutesObject = unknown;
+// type RoutesObject = {
+// 	[k in Route]: k
+// };
 
 // type tests = [
 //   Expect<
@@ -193,7 +203,11 @@ import { Equal, Expect } from "../../helper";
 //   groupId: string;
 // }
 
-// type OnlyIdKeys<T> = unknown;
+// type OnlyId = `${string}${'id' | "Id"}${string}`
+
+// type OnlyIdKeys<T> = {
+// 	[k in keyof T as k extends OnlyId ? k : never]: T[k]
+// };
 
 // type tests = [
 //   Expect<
