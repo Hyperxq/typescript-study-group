@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../../../helper";
+import { Equal, Expect } from "../../../../helper";
 
 // 5. conditional types, want to return goodbye if u pass hello, and vice versa
 

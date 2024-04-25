@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../../../helper";
+import { Equal, Expect } from "../../../../helper";
 
 // 7.2 create a mapped type with onle the keys containing "id"
 

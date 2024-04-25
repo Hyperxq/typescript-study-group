@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../../../helper";
+import { Equal, Expect } from "../../../../helper";
 
 // 4. infer literal values by indexing 
 

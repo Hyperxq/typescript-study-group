@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../../../helper";
+import { Equal, Expect } from "../../../../helper";
 
 // 6. string literals 
 // 6.1 only allow absolute path as arguments.

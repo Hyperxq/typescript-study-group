@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../../../helper";
+import { Equal, Expect } from "../../../../helper";
 
 // 7 mapped types
 
