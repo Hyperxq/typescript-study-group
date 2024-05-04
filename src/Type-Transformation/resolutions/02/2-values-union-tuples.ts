@@ -26,6 +26,24 @@ interface Values {
 
 type ValuesAsUnionOfTuples = { 
   [K in keyof Values]: [K, Values[K]];
+}; 
+
+type TValueTuples = ValuesAsUnionOfTuples[keyof Values];
+
+type tests = [
+  Expect<
+    Equal<
+    TValueTuples,
+      ["email", string] | ["firstName", string] | ["lastName", string]
+    >
+  >
+]; 
+
+/*
+// Proposal for lesson-04: type transformations part 2.
+
+type ValuesAsUnionOfTuples = { 
+  [K in keyof Values]: [K, Values[K]];
 }[keyof Values]; 
 
 type tests = [
@@ -35,4 +53,6 @@ type tests = [
       ["email", string] | ["firstName", string] | ["lastName", string]
     >
   >
-];    
+]; 
+
+*/

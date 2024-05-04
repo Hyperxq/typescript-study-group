@@ -6,10 +6,15 @@ type ButtonSize = "small" | "medium" | "large";
 
 type ButtonVariant = "primary" | "secondary";
 
-
+/*
+// Proposal for lesson-04: type transformations part 2.
 type TPermutations<T extends string, U extends string> = `${T} ${U} button`;
 
-type Buttons = TPermutations<ButtonSize, ButtonVariant> ;
+type Buttons = TPermutations<ButtonSize, ButtonVariant>;
+
+*/
+
+type Buttons = `${ButtonSize} ${ButtonVariant} button`;
 
 type tests = [
   Expect<
